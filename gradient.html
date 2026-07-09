@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-gradient-to-r from-[#00f459] to-[#4567e4]">
+    <div class="flex mt-50 xl:mt-50 justify-center items-center gap-2 md:gap-5">
+      <button
+        id="btn1"
+        class="bg-black rounded-full text-white px-10 py-2 shadow-xl shadow-black transition-all delay-150 ease-in-out duration-500 hover:-translate-y-1 hover:scale-110"
+      >
+        #00f459
+      </button>
+      <button
+        id="btn2"
+        class="bg-pink-400 rounded-full text-white px-10 py-2 shadow-xl shadow-black transition-all delay-150 ease-in-out duration-500 hover:-translate-y-1 hover:scale-110"
+      >
+        #4567e4
+      </button>
+    </div>
+    <div
+      class="copy flex justify-center items-center mt-10 ms-20 me-20 min-[375px]:ms-25 min-[375px]:me-25 min-[425px]:ms-30 min-[425px]:me-30 md:ms-70 md:me-70 lg:ms-100 lg:me-100 xl:ms-150 xl:me-150 border-2 rounded-md hover:bg-gray-400 bg-gray-500"
+    >
+      <p class="p-2">Copy code here!</p>
+    </div>
+    <section
+      class="bg-gray-200 mt-10 flex justify-center items-center border-l-10 border-black ms-10 me-10 md:ms-50 md:me-50 lg:ms-80 lg:me-80 xl:ms-120 xl:me-120 rounded-lg items-stretch"
+    >
+      <div>
+        <p class="p-10 copycode">
+          bg-gradient-to-r from-[#00f459] to-[#4567e4]
+        </p>
+      </div>
+    </section>
+    <script>
+      let gradientbtn1 = document.getElementById("btn1");
+      let gradientbtn2 = document.getElementById("btn2");
+      let codediv = document.querySelector(".copycode");
+      let copycode = document.querySelector(".copy");
+      let color1 = " #00f459";
+      let color2 = " #4567e4";
+      let handleftn = () => {
+        let hexacode = "0123456789abcdef";
+        let commoncode = "#";
+        for (let index = 0; index < 6; index++) {
+          commoncode = commoncode + hexacode[Math.floor(Math.random() * 16)];
+        }
+        return commoncode;
+      };
+      let ftnbtn1 = () => {
+        color1 = handleftn();
+        document.body.style.backgroundImage = `linear-gradient(to right,${color1},${color2})`;
+        codediv.innerText = ` bg-gradient-to-r from-[${color1}] to-[${color2}]`;
+        gradientbtn1.innerText = `${color1}`;
+        console.log(color1);
+      };
+      let ftnbtn2 = () => {
+        color2 = handleftn();
+        document.body.style.backgroundImage = `linear-gradient(to right,${color1},${color2})`;
+        codediv.innerText = ` bg-gradient-to-r from-[${color1}] to-[${color2}]`;
+        gradientbtn2.innerText = `${color2}`;
+        console.log(color2);
+      };
+      gradientbtn1.addEventListener("click", ftnbtn1);
+      gradientbtn2.addEventListener("click", ftnbtn2);
+      copycode.addEventListener("click", () => {
+        let originaltext = codediv.innerText;
+        navigator.clipboard.writeText(codediv.innerText);
+        codediv.innerText = "Copied! ✅";
+        setTimeout(() => {
+          codediv.innerText = originaltext;
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
